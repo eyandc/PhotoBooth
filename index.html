@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>PhotoBooth</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📸</text></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div id="app">
+
+  <header class="app-header">
+    <h1>📸 PhotoBooth</h1>
+    <p class="tagline">Capture. Customize. Download.</p>
+  </header>
+
+  <main>
+
+    <!-- SETUP SCREEN -->
+    <section id="screen-setup" class="screen active">
+      <div class="setup-grid">
+        <div class="setup-panel">
+          <h2><span class="step-num">1</span> Choose a Layout</h2>
+          <div id="template-list" class="option-grid"></div>
+        </div>
+        <div class="setup-panel">
+          <h2><span class="step-num">2</span> Choose a Filter</h2>
+          <div id="filter-list" class="option-grid"></div>
+        </div>
+        <div class="setup-panel">
+          <h2><span class="step-num">3</span> Choose a Frame</h2>
+          <div id="frame-list" class="option-grid"></div>
+        </div>
+        <div class="setup-panel">
+          <h2><span class="step-num">4</span> Capture Mode</h2>
+          <div id="mode-list" class="option-grid option-grid--inline"></div>
+        </div>
+        <div class="setup-panel">
+          <h2><span class="step-num">5</span> Countdown</h2>
+          <div id="countdown-list" class="option-grid option-grid--inline"></div>
+        </div>
+      </div>
+      <div class="setup-actions">
+        <p id="setup-error" class="error-text" hidden></p>
+        <button id="btn-start" class="btn btn-primary btn-large">Start Session</button>
+      </div>
+    </section>
+
+    <!-- CAMERA SCREEN -->
+    <section id="screen-camera" class="screen">
+      <div class="camera-stage" id="camera-stage">
+        <video id="video" autoplay playsinline muted></video>
+        <div id="countdown-overlay" class="countdown-overlay" hidden>
+          <span id="countdown-number"></span>
+        </div>
+        <div id="flash-overlay" class="flash-overlay"></div>
+        <div id="shot-progress" class="shot-progress"></div>
+        <button id="btn-switch-camera" class="btn btn-icon" title="Switch Camera" hidden>🔄</button>
+      </div>
+
+      <div class="camera-filter-row">
+        <button id="filter-scroll-left" class="filter-scroll-btn" type="button" aria-label="Scroll filters left">‹</button>
+        <div class="camera-filter-strip" id="camera-filter-strip"></div>
+        <button id="filter-scroll-right" class="filter-scroll-btn" type="button" aria-label="Scroll filters right">›</button>
+      </div>
+
+      <div class="thumbnail-strip" id="thumbnail-strip"></div>
+
+      <div class="camera-actions">
+        <button id="btn-take-photo" class="btn btn-primary btn-large" hidden>📸 Take Photo</button>
+        <button id="btn-cancel-session" class="btn btn-ghost">Cancel</button>
+      </div>
+    </section>
+
+    <!-- EDITOR SCREEN -->
+    <section id="screen-editor" class="screen">
+      <div class="editor-layout">
+        <aside class="editor-panel">
+          <div class="panel-block">
+            <h3>Stickers</h3>
+            <div id="sticker-tray" class="sticker-tray"></div>
+          </div>
+          <div class="panel-block">
+            <h3>Custom Text</h3>
+            <input id="text-input" type="text" placeholder="Adrian &amp; Friends" maxlength="40" />
+            <div class="text-controls">
+              <label class="mini-label">Color <input id="text-color" type="color" value="#2b2b2b" /></label>
+              <label class="mini-label">Size <input id="text-size" type="range" min="16" max="96" value="36" /></label>
+            </div>
+            <button id="btn-add-text" class="btn btn-secondary btn-block">Add Text</button>
+          </div>
+          <div class="panel-block panel-block--hint">
+            <p>Drag a photo to reframe it, scroll to zoom. Drag stickers/text to position them, scroll to resize, click ✕ to delete.</p>
+          </div>
+        </aside>
+
+        <div class="editor-stage-col">
+          <div class="editor-stage-wrap" id="stage-wrap">
+            <div class="stage-scaler" id="stage-scaler">
+              <div class="stage" id="stage"></div>
+            </div>
+          </div>
+
+          <div class="editor-actions">
+            <button id="btn-retake" class="btn btn-ghost">Retake</button>
+            <button id="btn-download-png" class="btn btn-primary">Download PNG</button>
+            <button id="btn-download-jpg" class="btn btn-primary">Download JPG</button>
+            <button id="btn-new-session" class="btn btn-secondary">New Session</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

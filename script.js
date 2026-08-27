@@ -757,6 +757,7 @@ function renderPhotoCell(photo) {
   reset.className = 'cell-reset';
   reset.title = 'Reset framing';
   reset.textContent = '⟲';
+  reset.addEventListener('pointerdown', (e) => e.stopPropagation());
   reset.addEventListener('click', (e) => {
     e.stopPropagation();
     photo.zoom = ZOOM_MIN;
@@ -861,6 +862,9 @@ function renderItem(item) {
   del.type = 'button';
   del.className = 'item-delete';
   del.textContent = '✕';
+  // stop propagation on pointerdown (not just click) -- otherwise the parent's
+  // drag handler captures the pointer first and the click never fires at all
+  del.addEventListener('pointerdown', (e) => e.stopPropagation());
   del.addEventListener('click', (e) => { e.stopPropagation(); deleteItem(item.id); });
   div.appendChild(del);
 

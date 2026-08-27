@@ -359,8 +359,7 @@ html, body {
 }
 .text-controls {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
   margin-top: 10px;
   gap: 10px;
 }
@@ -369,13 +368,13 @@ html, body {
   color: var(--text-dim);
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
 }
 .mini-label input[type="color"] {
   width: 30px; height: 30px;
   border: none; background: none; padding: 0; cursor: pointer;
 }
-.mini-label input[type="range"] { cursor: pointer; }
+.mini-label input[type="range"] { cursor: pointer; flex: 1; width: auto; }
 
 .editor-stage-col {
   display: flex;
